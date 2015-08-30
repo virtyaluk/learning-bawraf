@@ -1,5 +1,7 @@
+'use strict';
+
 var React = require('react'),
-    About = Reqct.createClass({
+    About = React.createClass({
         render: function() {
             return (
                 <div>
