@@ -2,6 +2,10 @@
 
 var React = require('react'),
     AuthorList = React.createClass({
+        propTypes: {
+            authors: React.PropTypes.array.isRequired
+        },
+
         createAuthorRow: function(author) {
             return (
                 <tr key={author.id}>
