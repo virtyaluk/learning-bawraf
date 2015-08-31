@@ -1,10 +1,11 @@
 'use strict';
 
 var React = require('react'),
+    AuthorForm = require('./authorForm'),
     ManageAuthorPage = React.createClass({
         render: function() {
             return (
-                <h1>Manage Author</h1>
+                <AuthorForm />
             );
         }
     });
