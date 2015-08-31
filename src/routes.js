@@ -1,3 +1,5 @@
+/*eslint no-mixed-requires: 0 */
+
 'use strict';
 
 var React = require('react'),
