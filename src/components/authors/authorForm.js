@@ -1,20 +1,15 @@
 'use strict';
 
 var React = require('react'),
+    Input = require('../common/textInput'),
     AuthorForm = React.createClass({
         render: function() {
             return (
                 <form>
                     <h1>Manage Author</h1>
-                    <label htmlFor="firstName">First Name</label>
-                    <input type="text" className="form-control" placeholder="First Name" ref="firstName"
-                        value={this.props.author.firstName} onChange={this.props.onChange} />
-                    <br/>
+                    <Input name="firstName" label="First Name" value={this.props.author.firstName} onChange={this.props.onChange} />
 
-                    <label htmlFor="lastName">Last Name</label>
-                    <input type="text" className="form-control" placeholder="Last Name" ref="lastName"
-                        value={this.props.author.lastName} onChange={this.props.onChange} />
-                    <br/>
+                    <Input name="lastName" label="Last Name" value={this.props.author.lastName} onChange={this.props.onChange} />
 
                     <input type="submit" value="Save" className="btn btn-default" />
                 </form>
