@@ -10,6 +10,14 @@ var React = require('react'),
             Router.Navigation
         ],
 
+        statics: {
+            willTransitionFrom: function(transition, component) {
+                if (component.state.dirty && !confirm('Leave without saving?')) {
+                    transition.abort();
+                }
+            }
+        },
+
         getInitialState: function() {
             return {
                 author: {
@@ -17,11 +25,14 @@ var React = require('react'),
                     firstName: '',
                     lastName: ''
                 },
-                errors: {}
+                errors: {},
+                dirty: false
             };
         },
 
         setAuthorState: function(ev) {
+            this.setState({ dirty: true });
+
             var field = ev.target.name,
                 val = ev.target.value;
 
@@ -57,6 +68,7 @@ var React = require('react'),
             }
 
             authorApi.saveAuthor(this.state.author);
+            this.setState({ dirty: false });
             toastr.success('Author saved.');
             this.transitionTo('authors');
         },
