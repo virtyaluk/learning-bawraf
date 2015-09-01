@@ -30,6 +30,14 @@ var React = require('react'),
             };
         },
 
+        componentWillMount: function() {
+            var authorId = this.props.params.id;
+
+            if (authorId) {
+                this.setState({ author: authorApi.getAuthorById(authorId) });
+            }
+        },
+
         setAuthorState: function(ev) {
             this.setState({ dirty: true });
 
