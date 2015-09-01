@@ -16,7 +16,8 @@ var React = require('react'),
                     id: '',
                     firstName: '',
                     lastName: ''
-                }
+                },
+                errors: {}
             };
         },
 
@@ -29,8 +30,32 @@ var React = require('react'),
             return this.setState({ author: this.state.author });
         },
 
+        authorFormIsValid: function() {
+            var formIsValid = true;
+            this.state.errors = {};
+
+            if (this.state.author.firstName.length < 3) {
+                this.state.errors.firstName = 'First name must be at least 3 characters.';
+                formIsValid = false;
+            }
+
+            if (this.state.author.lastName.length < 3) {
+                this.state.errors.lastName = 'Last name must be at least 3 characters.'
+                formIsValid = false;
+            }
+
+            this.setState({ errors: this.state.errors });
+            
+            return formIsValid; 
+        },
+
         saveAuthor: function(ev) {
             ev.preventDefault();
+
+            if (!this.authorFormIsValid()) {
+                return;
+            }
+
             authorApi.saveAuthor(this.state.author);
             toastr.success('Author saved.');
             this.transitionTo('authors');
