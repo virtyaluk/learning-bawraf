@@ -76,6 +76,12 @@ var React = require('react'),
                 return;
             }
 
+            if (this.state.author.id) {
+                authorActions.updateAuthor(this.state.author);
+            } else {
+                authorActions.createAuthor(this.state.author);
+            }
+
             authorActions.createAuthor(this.state.author);
             this.setState({ dirty: false });
             toastr.success('Author saved.');

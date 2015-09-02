@@ -11,6 +11,14 @@ var Dispatcher = require('../dispatcher/appDispatcher'),
                 actionType: actionTypes.CREATE_AUTHOR,
                 author: newAuthor 
             })
+        },
+        updateAuthor: function(author) {
+            var updatedAuthor = authorApi.saveAuthor(author);
+
+            Dispatcher.dispatch({
+                actionType: actionTypes.UPDATE_AUTHOR,
+                author: updatedAuthor
+            })
         }
     };
 

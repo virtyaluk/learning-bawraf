@@ -40,6 +40,14 @@ Dispatcher.register(function(action) {
             _authors.push(action.author);
             AuthorStore.emitChange();
         break;
+
+        case actionTypes.UPDATE_AUTHOR:
+            var existingAuthor = _.find(_authors, { id: action.author.id }),
+                exAuthInd = _.indexOf(_authors, existingAuthor);
+
+            _authors.splice(exAuthInd, 1, action.author);
+            AuthorStore.emitChange();
+        break;
     }
 });
 
