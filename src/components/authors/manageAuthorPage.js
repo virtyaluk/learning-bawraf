@@ -3,7 +3,8 @@
 var React = require('react'),
     Router = require('react-router'),
     AuthorForm = require('./authorForm'),
-    authorApi = require('../../api/authorApi'),
+    authorActions = require('../../actions/authorActions'),
+    authorStore = require('../../stores/authorStore'),
     toastr = require('toastr'),
     ManageAuthorPage = React.createClass({
         mixins: [
@@ -34,7 +35,7 @@ var React = require('react'),
             var authorId = this.props.params.id;
 
             if (authorId) {
-                this.setState({ author: authorApi.getAuthorById(authorId) });
+                this.setState({ author: authorStore.getAuthorById(authorId) });
             }
         },
 
@@ -75,7 +76,7 @@ var React = require('react'),
                 return;
             }
 
-            authorApi.saveAuthor(this.state.author);
+            authorActions.createAuthor(this.state.author);
             this.setState({ dirty: false });
             toastr.success('Author saved.');
             this.transitionTo('authors');
