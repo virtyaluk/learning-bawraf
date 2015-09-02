@@ -19,6 +19,14 @@ var Dispatcher = require('../dispatcher/appDispatcher'),
                 actionType: actionTypes.UPDATE_AUTHOR,
                 author: updatedAuthor
             })
+        },
+        deleteAuthor: function(id) {
+            authorApi.deleteAuthor(id);
+
+            Dispatcher.dispatch({
+                actionType: actionTypes.DELETE_AUTHOR,
+                id: id
+            })
         }
     };
 

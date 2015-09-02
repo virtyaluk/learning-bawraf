@@ -48,6 +48,13 @@ Dispatcher.register(function(action) {
             _authors.splice(exAuthInd, 1, action.author);
             AuthorStore.emitChange();
         break;
+
+        case actionTypes.DELETE_AUTHOR:
+            _.remove(_authors, function(author) {
+                return action.id == author.id; 
+            });
+            AuthorStore.emitChange();
+        break;
     }
 });
 

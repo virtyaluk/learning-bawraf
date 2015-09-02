@@ -12,6 +12,18 @@ var React = require('react'),
             };
         },
 
+        componentWillMount: function() {
+            authorStore.addChangeListener(this._onChange);
+        },
+
+        componentWillUnmount: function() {
+            authorStore.removeChangeListener(this._onChange);
+        },
+
+        _onChange: function() {
+            this.setState({ authors: authorStore.getAllAuthors() });
+        },
+
         render: function() {
             return (
                 <div>
