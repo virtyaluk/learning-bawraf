@@ -5,6 +5,8 @@ var Dispatcher = require('../dispatcher/appDispatcher'),
     EventEmitter = require('events').EventEmitter,
     assign = require('object-assign'),
     CHANGE_EVENT = 'change',
+    _ = require('lodash'),
+    _authors = [],
     AuthorStore = assign({}, EventEmitter.prototype, {
         addChangeListener: function(cb) {
             this.on(CHANGE_EVENT, cb);
@@ -16,5 +18,24 @@ var Dispatcher = require('../dispatcher/appDispatcher'),
 
         emitChange: function() {
             this.emit(CHANGE_EVENT);
+        },
+
+        getAllAuthors: function() {
+            return _authors;
+        },
+
+        getAuthorById: function(id) {
+            return _.find(_authors, { id: id });
         }
     });
+
+Dispatcher.register(function(action) {
+    switch(action.actionType) {
+        case actionTypes.CREATE_AUTHOR:
+            _authors.push(action.author);
+            AuthorStore.emitChange();
+        break;
+    }
+});
+
+module.exports = AuthorStore;
