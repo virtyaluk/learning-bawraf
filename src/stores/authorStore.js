@@ -31,6 +31,11 @@ var Dispatcher = require('../dispatcher/appDispatcher'),
 
 Dispatcher.register(function(action) {
     switch(action.actionType) {
+        case actionTypes.INITIALIZE: 
+            _authors = action.initialData.authors;
+            AuthorStore.emitChange();
+            break;
+            
         case actionTypes.CREATE_AUTHOR:
             _authors.push(action.author);
             AuthorStore.emitChange();
