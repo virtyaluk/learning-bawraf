@@ -4,7 +4,7 @@ My progress in learning [Building Applications with React and Flux](https://www.
 
 ## :green_book: License
 
-[Licensed under the MIT license.](https://github.com/paper-ui/core-styles/blob/master/LICENSE)
+[Licensed under the MIT license.](https://github.com/virtyaluk/bawraf/blob/master/LICENSE)
 
 Copyright (c) 2015 Bohdan Shtepan
 
